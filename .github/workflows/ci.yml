@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   test:
-    name: Go Test & Coverage
+    name: Go Test, Lint & Sonar
     runs-on: ubuntu-latest
     
     steps:
@@ -25,16 +25,14 @@ jobs:
           go-version-file: go.mod
           cache: true
       
-      - name: Download dependencies
-        run: go mod download
+      - name: Install tools
+        run: |
+          make tools
       
-      - name: Run tests with coverage
+      - name: Test with coverage
         run: |
           make check-ci
-
+      
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v7.0.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
