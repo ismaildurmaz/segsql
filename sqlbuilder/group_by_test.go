@@ -29,7 +29,8 @@ func TestGroupBy_MultipleFields(t *testing.T) {
 		ToSQL()
 
 	require.NoError(t, err)
-	require.Equal(t, "select status, country, count(*), sum(total_amount) from orders group by status, country", sql.SelectSQL)
+	require.Equal(t, "select status, country, count(*), sum(total_amount) from orders "+
+		"group by status, country", sql.SelectSQL)
 	require.Equal(t, 0, len(sql.SelectArgs))
 	require.Equal(t, "select count(*) from orders group by status, country", sql.CountSQL)
 	require.Equal(t, 0, len(sql.CountArgs))

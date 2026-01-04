@@ -22,6 +22,15 @@ linters:
   disable:
     - wsl
     - unqueryvet
+    - godox # disable TODO, FIXME warnings
+    
+  exclusions:
+    rules:
+      - path: '(.+)_test\.go'
+        linters:
+          - funlen
+          - dupword
+      
   settings:
     depguard:
       rules:

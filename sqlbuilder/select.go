@@ -151,23 +151,4 @@ func (s *projectionField) generateSQL() (string, utils.AnyList) {
 	return sb.String(), nil
 }
 
-type subQuerySelect struct {
-	selecting
-
-	alias           string
-	subQueryBuilder *SelectBuilder
-}
-
-func newSubQuerySelect(alias string, subQueryBuilder *SelectBuilder) *subQuerySelect {
-	return &subQuerySelect{alias: alias, subQueryBuilder: subQueryBuilder}
-}
-
-func (s *subQuerySelect) generateSQL() (string, utils.AnyList) {
-	subSql, args := s.subQueryBuilder.generateSQL()
-	sql := "(" + subSql + ")"
-	if s.alias != "" {
-		sql = sql + " as " + s.alias
-	}
-
-	return sql, args
-}
+// TODO implement subselect

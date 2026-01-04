@@ -22,7 +22,7 @@ func TestSomeFields(t *testing.T) {
 
 func TestAll(t *testing.T) {
 	sqlResult, err := sqlbuilder.SelectQuery().
-		Select().Fields("*").ToSelectQuery().
+		Select().All().ToSelectQuery().
 		From().Table("users").ToSelectQuery().
 		ToSQL()
 
@@ -35,13 +35,14 @@ func TestAll(t *testing.T) {
 
 func TestSomeFunctions(t *testing.T) {
 	sqlResult, err := sqlbuilder.SelectQuery().
-		Select().Count().Avg("age").Sum("salary").Max("height").Min("weight").ToSelectQuery().
+		Select().Field("city").Count().Avg("age").Sum("salary").Max("height").Min("weight").ToSelectQuery().
 		From().Table("users").ToSelectQuery().
+		GroupBy().Fields("city").ToSelectQuery().
 		ToSQL()
 	require.NoError(t, err)
-	require.Equal(t, "select count(*), avg(age), sum(salary), max(height), min(weight) from users",
+	require.Equal(t, "select city, count(*), avg(age), sum(salary), max(height), min(weight) from users group by city",
 		sqlResult.SelectSQL)
 	require.Equal(t, 0, len(sqlResult.SelectArgs))
-	require.Equal(t, "select count(*) from users", sqlResult.CountSQL)
+	require.Equal(t, "select count(*) from users group by city", sqlResult.CountSQL)
 	require.Equal(t, 0, len(sqlResult.CountArgs))
 }
