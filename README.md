@@ -57,11 +57,11 @@ sql, err := sqlbuilder.SelectQuery().
     Select().Fields("u.id", "u.name").ToSelectQuery().
     From().TableWithAlias("users", "u").ToSelectQuery().
     Where().
-	    Eq("u.status", "active").
+        Eq("u.status", "active").
         And().
         In("u.role", "admin", "editor").
     ToSelectQuery().
-	ToSQL()
+    ToSQL()
 ```
 
 ---
