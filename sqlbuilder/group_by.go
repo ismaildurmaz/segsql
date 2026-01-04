@@ -33,7 +33,7 @@ func (g *GroupByBuilder) Fields(fields ...string) *GroupByBuilder {
 	return g
 }
 
-func (g *GroupByBuilder) Build() *SelectQueryBuilder {
+func (g *GroupByBuilder) ToSelectQuery() *SelectQueryBuilder {
 	return g.owner
 }
 
