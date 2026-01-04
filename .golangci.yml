@@ -1,0 +1,58 @@
+version: "2"
+
+run:
+  timeout: 5m
+  tests: true
+
+output:
+  formats:
+    text:
+      path: stdout
+      print-issued-lines: true
+      print-linter-name: true
+      colors: true
+    junit-xml:
+      extended: true
+      path: ./build/reports/test-results/junit.xml
+    checkstyle:
+      path: ./build/reports/test-results/checkstyle.xml
+
+linters:
+  default: fast
+  disable:
+    - wsl
+    - unqueryvet
+  settings:
+    depguard:
+      rules:
+        # -----------------------------
+        # Production code
+        # -----------------------------
+        Main:
+          files:
+            - "**/*.go"
+            - "!**/*_test.go"
+
+          allow:
+            # Go std
+            - "$gostd"
+            - "github.com/ismaildurmaz/segsql"
+
+        # -----------------------------
+        # Test code
+        # -----------------------------
+        Test:
+          files:
+            - "**/*_test.go"
+
+          allow:
+            - "$gostd"
+            - "github.com/ismaildurmaz/segsql"
+            - "github.com/stretchr/testify/require"
+
+
+formatters:
+  settings:
+    gofumpt:
+      extra-rules: true
+
