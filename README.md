@@ -53,17 +53,15 @@ go get github.com/ismaildurmaz/segsql
 ## 🚀 Quick Example
 
 ```go
-q := segsql.
-    Select().
-    Fields("u.id", "u.name").
-    From().
-    TableWithAlias("users", "u").
+sql, err := sqlbuilder.SelectQuery().
+    Select().Fields("u.id", "u.name").ToSelectQuery().
+    From().TableWithAlias("users", "u").ToSelectQuery().
     Where().
-    Eq("u.status", "active").
-    And().
-    In("u.role", []string{"admin", "editor"})
-
-sql, args := q.GenerateSQL()
+	    Eq("u.status", "active").
+        And().
+        In("u.role", "admin", "editor").
+    ToSelectQuery().
+	ToSQL()
 ```
 
 ---

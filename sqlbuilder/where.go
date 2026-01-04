@@ -260,26 +260,32 @@ func newInWhere(expr string, params []interface{}, not bool) *inWhere {
 }
 
 func (i *inWhere) generateSQL() (string, utils.AnyList, error) {
-	p := make([]string, len(i.params))
-
 	if len(i.params) == 0 {
 		return "", nil, fmt.Errorf("in where params cannot be empty")
 	}
 
-	for range i.params {
-		p = append(p, "?")
+	sb := strings.Builder{}
+
+	sb.WriteString(i.expr)
+	sb.WriteString(" ")
+	if i.not {
+		sb.WriteString("not ")
 	}
 
-	sql := i.expr + " "
-	if i.not {
-		sql += "not "
+	sb.WriteString("in (")
+	for j, _ := range i.params {
+		sb.WriteString("?")
+		if j < len(i.params)-1 {
+			sb.WriteString(", ")
+		}
 	}
-	sql += "in (" + strings.Join(p, ", ") + ")"
+
+	sb.WriteString(")")
 
 	arr := utils.NewAnyList()
 	arr.AddItems(i.params...)
 
-	return sql, arr, nil
+	return sb.String(), arr, nil
 }
 
 type joinWhere struct {
