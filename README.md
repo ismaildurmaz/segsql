@@ -1,6 +1,10 @@
 # segsql
 
-[![codecov](https://codecov.io/github/ismaildurmaz/segsql/branch/master/graph/badge.svg?token=O7NC5M5R3E)](https://codecov.io/github/ismaildurmaz/segsql)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ismaildurmaz_segsql&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ismaildurmaz_segsql)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ismaildurmaz_segsql&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ismaildurmaz_segsql)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ismaildurmaz_segsql&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ismaildurmaz_segsql)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ismaildurmaz_segsql&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ismaildurmaz_segsql)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ismaildurmaz_segsql&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ismaildurmaz_segsql)
 
 > **Composable, segment-based SQL builder for Go**  
 > Build SQL queries from independent, reusable segments with first-class support for parameters and subqueries.
