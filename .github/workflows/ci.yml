@@ -30,10 +30,10 @@ jobs:
       
       - name: Run tests with coverage
         run: |
-          go test ./... -race -covermode=atomic -coverprofile=build/repoors/coverage.out
+          go test ./... -race -covermode=atomic -coverprofile=coverage.out
       
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          files: build/repoors/coverage.out
+          files: coverage.out
           fail_ci_if_error: false
