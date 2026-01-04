@@ -31,10 +31,10 @@ clean:
 .PHONY: tools
 tools:
 	@echo "🔧 Installing tools..."
-	go install mvdan.cc/gofumpt@latest
-	go install golang.org/x/tools/cmd/goimports@latest
-	go install github.com/jstemmer/go-junit-report@latest
-	go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
+	go install mvdan.cc/gofumpt@v0.6.0
+	go install golang.org/x/tools/cmd/goimports@v0.16.0
+	go install github.com/jstemmer/go-junit-report/v2@v2.1.0
+	go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.0.0
 
 .PHONY: generate
 generate:
