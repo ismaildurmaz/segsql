@@ -31,6 +31,11 @@ func newFromList() FromList {
 	return FromList{}
 }
 
+func (s *FromBuilder) AppendBuilder(other *FromBuilder) *FromBuilder {
+	s.items.AddList(other.items)
+	return s
+}
+
 func (s *FromBuilder) Table(table string) *FromBuilder {
 	s.addFrom(newFromTable(table, ""))
 
