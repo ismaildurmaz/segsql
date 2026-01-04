@@ -108,7 +108,7 @@ func (q *SelectQueryBuilder) ToSQL() (SelectQuerySQL, error) {
 	groupByPart := q.prepareGroupByPart()
 	orderByPart := q.prepareOrderByPart()
 
-	countSql := q.prepareSql("count(*)", fromPart, wherePart, groupByPart, orderByPart)
+	countSql := q.prepareSql("count(*)", fromPart, wherePart, groupByPart, "")
 	selectSql := q.prepareSql(selectPart, fromPart, wherePart, groupByPart, orderByPart)
 
 	return SelectQuerySQL{

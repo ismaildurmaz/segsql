@@ -15,8 +15,6 @@ GO_PKG_DIRS = .
 
 define go_test
 	go test ./... \
-		-count=1 \
-		-covermode=atomic \
 		-coverprofile=$(COVERAGE) \
 		-v -json | go-junit-report > $(JUNIT)
 endef
